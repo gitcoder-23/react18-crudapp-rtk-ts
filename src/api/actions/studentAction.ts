@@ -18,14 +18,15 @@ export const getAllStudents = createAsyncThunk<[StudentModel]>(
   }
 );
 
-export const getSingleStudent = createAsyncThunk<studentActionViewType, {}>(
-  "student/view",
-  async (vid) => {
-    console.log("vid=>", vid);
+export const getSingleStudent = createAsyncThunk<
+  StudentModel,
+  studentActionViewType,
+  {}
+>("student/view", async (vid) => {
+  console.log("vid=>", vid);
 
-    const response = await RootApi.get(`/student/${vid}`);
-    // console.log("response-student=>", response);
+  const response = await RootApi.get(`/student/${vid}`);
+  // console.log("response-student=>", response);
 
-    return response.data;
-  }
-);
+  return response.data;
+});

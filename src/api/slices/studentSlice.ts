@@ -51,7 +51,7 @@ const studentSlice = createSlice({
 
     builder.addCase(
       getSingleStudent.fulfilled,
-      (state, actions: PayloadAction<any>) => {
+      (state, actions: PayloadAction<StudentModel, any>) => {
         state.isLoading = false;
         state.singleStudent = actions.payload;
         state.message = "Student data is fetched";
@@ -62,6 +62,7 @@ const studentSlice = createSlice({
       getSingleStudent.rejected,
       (state, actions: PayloadAction<any>) => {
         state.isLoading = false;
+        state.singleStudent = actions.payload;
         state.message = "Something went wrong";
       }
     );

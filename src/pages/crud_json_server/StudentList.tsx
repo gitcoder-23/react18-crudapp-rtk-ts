@@ -21,7 +21,7 @@ const StudentList: React.FC = () => {
     dispatch(getAllStudents());
   }, []);
 
-  const viewBtnClick = (vid: string | number) => {
+  const viewBtnClick = (vid: string | number | any) => {
     navigate(`/studentdetails/${vid}`);
     dispatch(getSingleStudent(vid));
   };
