@@ -30,7 +30,7 @@ const StudentTable: React.FC<studentTableType> = ({
       </thead>
       <tbody>
         {allStudents &&
-          allStudents?.map((sdata: any, i: number) => {
+          allStudents?.map((sdata: StudentModel, i: number) => {
             // console.log("sdata=>", sdata);
 
             return (
