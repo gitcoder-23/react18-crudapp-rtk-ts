@@ -6,7 +6,7 @@ type studentActionViewType = {
   vid: string | number;
 };
 type studentActionDelType = {
-  delid?: number;
+  delid: string | number;
 };
 
 export const getAllStudents = createAsyncThunk<[StudentModel]>(
@@ -33,7 +33,7 @@ export const getSingleStudent = createAsyncThunk<
   return response.data;
 });
 
-export const deleteOneStudent = createAsyncThunk<studentActionDelType, {}>(
+export const deleteOneStudent = createAsyncThunk<[StudentModel], any, {}>(
   "student/delete",
   async (delid) => {
     console.log("delid=>", delid);

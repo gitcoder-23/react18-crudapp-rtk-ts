@@ -79,21 +79,17 @@ const studentSlice = createSlice({
 
     builder.addCase(
       deleteOneStudent.fulfilled,
-      (state, actions: PayloadAction<any>) => {
+      (state, actions: PayloadAction<StudentModel[]>) => {
         state.isLoading = false;
-        state.allStudents = actions.payload;
+        state.allStudents = [...state.allStudents];
         state.message = "Student data is deleted";
       }
     );
 
-    builder.addCase(
-      deleteOneStudent.rejected,
-      (state, actions: PayloadAction<any>) => {
-        state.isLoading = false;
-        state.allStudents = actions.payload;
-        state.message = "Something went wrong";
-      }
-    );
+    builder.addCase(deleteOneStudent.rejected, (state) => {
+      state.isLoading = false;
+      state.message = "Something went wrong";
+    });
   },
 });
 

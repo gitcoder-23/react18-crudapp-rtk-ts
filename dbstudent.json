@@ -1,13 +1,6 @@
 {
   "student": [
     {
-      "studentname": "Clementine Bauch",
-      "email": "Nathan@yesenia.net",
-      "phone": "1-463-123-4447",
-      "active": false,
-      "id": 1
-    },
-    {
       "studentname": "Patricia Osama",
       "email": "Patricia.OConner@kory.org",
       "phone": "378-170-9623 x156",
