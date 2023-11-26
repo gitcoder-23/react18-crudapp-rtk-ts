@@ -55,21 +55,18 @@ const studentSlice = createSlice({
 
     builder.addCase(
       getSingleStudent.fulfilled,
-      (state, actions: PayloadAction<StudentModel, any>) => {
+      (state, actions: PayloadAction<StudentModel>) => {
         state.isLoading = false;
         state.singleStudent = actions.payload;
         state.message = "Student data is fetched";
       }
     );
 
-    builder.addCase(
-      getSingleStudent.rejected,
-      (state, actions: PayloadAction<any>) => {
-        state.isLoading = false;
-        state.singleStudent = actions.payload;
-        state.message = "Something went wrong";
-      }
-    );
+    builder.addCase(getSingleStudent.rejected, (state) => {
+      state.isLoading = false;
+      state.singleStudent = {} as StudentModel;
+      state.message = "Something went wrong";
+    });
 
     // For Delete One Student
     builder.addCase(deleteOneStudent.pending, (state) => {

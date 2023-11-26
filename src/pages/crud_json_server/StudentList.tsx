@@ -14,9 +14,7 @@ const StudentList: React.FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const { allStudents, singleStudent } = useAppSelector(
-    (state) => state.student
-  );
+  const { allStudents } = useAppSelector((state) => state.student);
 
   // console.log("allStudents=>", allStudents);
 
@@ -24,15 +22,15 @@ const StudentList: React.FC = () => {
     dispatch(getAllStudents());
   }, []);
 
-  const viewBtnClick = (vid: string | number | any) => {
+  const viewBtnClick = (vid: string | number) => {
     navigate(`/studentdetails/${vid}`);
-    dispatch(getSingleStudent(vid));
+    dispatch(getSingleStudent({ vId: vid }));
   };
 
   const delClick = (dData: StudentModel) => {
     if (window.confirm("Do you want?")) {
       console.log("dData=>", dData);
-      dispatch(deleteOneStudent(dData.id));
+      dispatch(deleteOneStudent({ delId: dData.id }));
     }
 
     dispatch(getAllStudents());
@@ -48,40 +46,6 @@ const StudentList: React.FC = () => {
           viewBtnClick={viewBtnClick}
           delClick={delClick}
         />
-        // <Table striped bordered hover size="sm">
-        //   <thead>
-        //     <tr>
-        //       <th>#</th>
-        //       <th>Student Name</th>
-        //       <th>Email</th>
-        //       <th>Phone</th>
-        //       <th>Action</th>
-        //     </tr>
-        //   </thead>
-        //   <tbody>
-        //     {allStudents &&
-        //       allStudents?.map((sdata: StudentModel, i: number) => {
-        //         // console.log("sdata=>", sdata);
-
-        //         return (
-        //           <tr key={sdata.id}>
-        //             <td>{i + 1}</td>
-        //             <td>{sdata.studentname}</td>
-        //             <td>{sdata.email}</td>
-        //             <td>{sdata.phone}</td>
-        //             <td>
-        //               <button onClick={() => viewBtnClick(sdata.id)}>
-        //                 View
-        //               </button>
-        //               &nbsp;&nbsp;
-        //               <button>Edit</button>&nbsp;&nbsp;
-        //               <button onClick={() => delClick(sdata)}>Delete</button>
-        //             </td>
-        //           </tr>
-        //         );
-        //       })}
-        //   </tbody>
-        // </Table>
       )}
     </div>
   );

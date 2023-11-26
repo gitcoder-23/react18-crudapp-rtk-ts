@@ -3,10 +3,10 @@ import { StudentModel } from "../models/studentModel";
 import { RootApi } from "../../RootApi";
 
 type studentActionViewType = {
-  vid: string | number;
+  vId: string | number;
 };
 type studentActionDelType = {
-  delid: string | number;
+  delId: string | number;
 };
 
 export const getAllStudents = createAsyncThunk<[StudentModel]>(
@@ -24,23 +24,24 @@ export const getSingleStudent = createAsyncThunk<
   StudentModel,
   studentActionViewType,
   {}
->("student/view", async (vid) => {
-  // console.log("vid=>", vid);
+>("student/view", async ({ vId }) => {
+  // console.log("vId=>", vId);
 
-  const response = await RootApi.get(`/student/${vid}`);
+  const response = await RootApi.get(`/student/${vId}`);
   // console.log("response-student=>", response);
 
   return response.data;
 });
 
-export const deleteOneStudent = createAsyncThunk<[StudentModel], any, {}>(
-  "student/delete",
-  async (delid) => {
-    console.log("delid=>", delid);
+export const deleteOneStudent = createAsyncThunk<
+  [StudentModel],
+  studentActionDelType,
+  {}
+>("student/delete", async ({ delId }) => {
+  console.log("delid=>", delId);
 
-    const response = await RootApi.delete(`/student/${delid}`);
-    console.log("response-student=>", response);
+  const response = await RootApi.delete(`/student/${delId}`);
+  console.log("response-student=>", response);
 
-    return response.data;
-  }
-);
+  return response.data;
+});
