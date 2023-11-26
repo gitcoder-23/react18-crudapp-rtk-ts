@@ -22,7 +22,7 @@ const StudentList: React.FC = () => {
 
   useMemo(() => {
     dispatch(getAllStudents());
-  }, [allStudents]);
+  }, []);
 
   const viewBtnClick = (vid: string | number | any) => {
     navigate(`/studentdetails/${vid}`);
