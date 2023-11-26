@@ -7,8 +7,6 @@ const StudentDetails: React.FC = () => {
   const navigate = useNavigate();
   const { singleStudent } = useAppSelector((state) => state.student);
 
-  // console.log("singleStudent=>", singleStudent);
-
   return (
     <div className="container">
       <Card>

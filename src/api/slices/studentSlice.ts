@@ -1,6 +1,10 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { StudentModel } from "../models/studentModel";
-import { getAllStudents, getSingleStudent } from "../actions/studentAction";
+import {
+  deleteOneStudent,
+  getAllStudents,
+  getSingleStudent,
+} from "../actions/studentAction";
 
 export interface initialStateInterface {
   allStudents: StudentModel[];
@@ -43,7 +47,7 @@ const studentSlice = createSlice({
       state.message = "Something went wrong";
     });
 
-    // For Get Single Students
+    // For Get Single Student
     builder.addCase(getSingleStudent.pending, (state) => {
       state.isLoading = true;
       state.message = "Student data is loading";
@@ -63,6 +67,30 @@ const studentSlice = createSlice({
       (state, actions: PayloadAction<any>) => {
         state.isLoading = false;
         state.singleStudent = actions.payload;
+        state.message = "Something went wrong";
+      }
+    );
+
+    // For Delete One Student
+    builder.addCase(deleteOneStudent.pending, (state) => {
+      state.isLoading = true;
+      state.message = "Student data is loading";
+    });
+
+    builder.addCase(
+      deleteOneStudent.fulfilled,
+      (state, actions: PayloadAction<any>) => {
+        state.isLoading = false;
+        state.allStudents = actions.payload;
+        state.message = "Student data is deleted";
+      }
+    );
+
+    builder.addCase(
+      deleteOneStudent.rejected,
+      (state, actions: PayloadAction<any>) => {
+        state.isLoading = false;
+        state.allStudents = actions.payload;
         state.message = "Something went wrong";
       }
     );
