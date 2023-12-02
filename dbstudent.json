@@ -36,18 +36,25 @@
       "active": true
     },
     {
-      "id": "d653821e-5760-4371-b7c8-c23e4d3e31f0",
-      "studentname": "John Vogan",
-      "email": "john@yahoo.com",
-      "phone": "9874584584",
-      "active": true
-    },
-    {
       "id": "00a61aa8-6681-4687-93f1-3373eb9afb02",
       "studentname": "John Vogan",
       "email": "john@yahoo.com",
       "phone": "9874584584",
       "active": false
+    },
+    {
+      "studentname": "Mina Khan",
+      "email": "mina@yahoo.com",
+      "phone": "7894561258",
+      "active": false,
+      "id": 1701512526379
+    },
+    {
+      "studentname": "Lara Dutta",
+      "email": "lara@yahoo.com",
+      "phone": "7894587485",
+      "active": true,
+      "id": 1701512765355
     }
   ]
 }

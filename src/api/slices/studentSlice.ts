@@ -1,6 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { StudentModel } from "../models/studentModel";
 import {
+  addNewStudent,
   deleteOneStudent,
   getAllStudents,
   getSingleStudent,
@@ -63,6 +64,27 @@ const studentSlice = createSlice({
     );
 
     builder.addCase(getSingleStudent.rejected, (state) => {
+      state.isLoading = false;
+      state.singleStudent = {} as StudentModel;
+      state.message = "Something went wrong";
+    });
+
+    // For Add New Student
+    builder.addCase(addNewStudent.pending, (state) => {
+      state.isLoading = true;
+      state.message = "New Student data is loading";
+    });
+
+    builder.addCase(
+      addNewStudent.fulfilled,
+      (state, actions: PayloadAction<StudentModel>) => {
+        state.isLoading = false;
+        state.allStudents = [...state.allStudents, actions.payload];
+        state.message = "New Student added";
+      }
+    );
+
+    builder.addCase(addNewStudent.rejected, (state) => {
       state.isLoading = false;
       state.singleStudent = {} as StudentModel;
       state.message = "Something went wrong";

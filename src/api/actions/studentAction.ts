@@ -8,6 +8,9 @@ type studentActionViewType = {
 type studentActionDelType = {
   delId: string | number;
 };
+type studentActionAddType = {
+  formData: StudentModel;
+};
 
 export const getAllStudents = createAsyncThunk<[StudentModel]>(
   "student/get",
@@ -33,15 +36,28 @@ export const getSingleStudent = createAsyncThunk<
   return response.data;
 });
 
+export const addNewStudent = createAsyncThunk<
+  StudentModel,
+  studentActionAddType,
+  {}
+>("student/add", async ({ formData }) => {
+  console.log("formData-action=>", formData);
+
+  const response = await RootApi.post(`/student`, formData);
+  console.log("addNewStudent-action=>", response);
+
+  return response.data;
+});
+
 export const deleteOneStudent = createAsyncThunk<
   [StudentModel],
   studentActionDelType,
   {}
 >("student/delete", async ({ delId }) => {
-  console.log("delid=>", delId);
+  // console.log("delid=>", delId);
 
   const response = await RootApi.delete(`/student/${delId}`);
-  console.log("response-student=>", response);
+  // console.log("response-student=>", response);
 
   return response.data;
 });

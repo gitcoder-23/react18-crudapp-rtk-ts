@@ -1,5 +1,4 @@
-import React, { useEffect, useMemo } from "react";
-import { Table } from "react-bootstrap";
+import React, { useMemo } from "react";
 import { useAppDispatch, useAppSelector } from "../../api/hooks";
 import {
   deleteOneStudent,
@@ -38,6 +37,12 @@ const StudentList: React.FC = () => {
 
   return (
     <div className="container mt-4">
+      <button
+        className="btn btn-primary"
+        onClick={() => navigate(`/studentadd`)}
+      >
+        Add
+      </button>
       {allStudents.length === 0 ? (
         <h3>No data found!</h3>
       ) : (
