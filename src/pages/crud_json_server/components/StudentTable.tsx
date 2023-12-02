@@ -6,12 +6,14 @@ type studentTableType = {
   allStudents: StudentModel[];
   viewBtnClick: (vid: string | number | any) => void;
   delClick: (dData: StudentModel) => void;
+  editClick: (edData: StudentModel) => void;
 };
 
 const StudentTable: React.FC<studentTableType> = ({
   allStudents,
   viewBtnClick,
   delClick,
+  editClick,
 }) => {
   // const StudentTable: React.FC = ({
   //   allStudents,
@@ -42,7 +44,8 @@ const StudentTable: React.FC<studentTableType> = ({
                 <td>
                   <button onClick={() => viewBtnClick(sdata.id)}>View</button>
                   &nbsp;&nbsp;
-                  <button>Edit</button>&nbsp;&nbsp;
+                  <button onClick={() => editClick(sdata)}>Edit</button>
+                  &nbsp;&nbsp;
                   <button onClick={() => delClick(sdata)}>Delete</button>
                 </td>
               </tr>

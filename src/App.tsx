@@ -6,6 +6,7 @@ import StudentDetails from "./pages/crud_json_server/StudentDetails";
 import StudentAdd from "./pages/crud_json_server/components/StudentAdd";
 import ToastMessage from "./components/ToastMessage";
 import StudentNewAdd from "./pages/crud_json_server/StudentNewAdd";
+import StudentEdit from "./pages/crud_json_server/StudentEdit";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/" element={<StudentList />} />
         <Route path="/studentadd" element={<StudentAdd />} />
         <Route path="/studentnewadd" element={<StudentNewAdd />} />
+        <Route path="/studentedit/:eid" element={<StudentEdit />} />
         <Route path="/studentdetails/:vid" element={<StudentDetails />} />
       </Routes>
     </div>

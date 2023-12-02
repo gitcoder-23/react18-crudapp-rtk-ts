@@ -3,5 +3,5 @@ export interface StudentModel {
   email: string;
   phone: string;
   active: boolean;
-  id: number;
+  id?: number;
 }

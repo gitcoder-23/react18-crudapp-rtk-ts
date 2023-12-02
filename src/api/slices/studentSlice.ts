@@ -1,6 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { StudentModel } from "../models/studentModel";
 import {
+  EditSingleStudent,
   addNewStudent,
   deleteOneStudent,
   getAllStudents,
@@ -11,6 +12,7 @@ import {
 export interface initialStateInterface {
   allStudents: StudentModel[];
   singleStudent: StudentModel;
+  editedSingleStudent: StudentModel;
   message: string;
   isLoading?: boolean;
 }
@@ -18,6 +20,7 @@ export interface initialStateInterface {
 const initialState: initialStateInterface = {
   allStudents: [],
   singleStudent: {} as StudentModel,
+  editedSingleStudent: {} as StudentModel,
   message: "",
   isLoading: false,
 };
@@ -108,6 +111,28 @@ const studentSlice = createSlice({
 
     builder.addCase(newPostStudent.rejected, (state) => {
       state.isLoading = false;
+      state.message = "Something went wrong";
+    });
+
+    // Edit Single Student
+    builder.addCase(EditSingleStudent.pending, (state) => {
+      state.isLoading = true;
+      state.message = "Student data is now loading";
+    });
+
+    builder.addCase(
+      EditSingleStudent.fulfilled,
+      (state, actions: PayloadAction<StudentModel>) => {
+        state.isLoading = false;
+        state.allStudents = [...state.allStudents, actions.payload];
+        state.editedSingleStudent = actions.payload;
+        state.message = "Student data is updated";
+      }
+    );
+
+    builder.addCase(EditSingleStudent.rejected, (state) => {
+      state.isLoading = false;
+      state.editedSingleStudent = {} as StudentModel;
       state.message = "Something went wrong";
     });
 

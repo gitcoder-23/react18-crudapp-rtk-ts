@@ -6,7 +6,7 @@ type studentActionViewType = {
   vId: string | number;
 };
 type studentActionDelType = {
-  delId: string | number;
+  delId: string | number | undefined;
 };
 type studentActionAddType = {
   formData: StudentModel;
@@ -14,6 +14,11 @@ type studentActionAddType = {
 
 type newStudentAddType = {
   formData: StudentModel;
+};
+
+type studentEditType = {
+  eid: string | number | undefined;
+  formEdData: StudentModel;
 };
 
 export const getAllStudents = createAsyncThunk<[StudentModel]>(
@@ -58,9 +63,21 @@ export const newPostStudent = createAsyncThunk<
   newStudentAddType,
   {}
 >("student/new/add", async ({ formData }) => {
-  console.log("formData-action=>", formData);
+  // console.log("formData-action=>", formData);
   const response = await RootApi.post(`/student`, formData);
-  console.log("response-add=>", response);
+  // console.log("response-add=>", response);
+
+  return response.data;
+});
+
+export const EditSingleStudent = createAsyncThunk<
+  StudentModel,
+  studentEditType,
+  {}
+>("student/edit", async ({ eid, formEdData }) => {
+  console.log("formData-action=>", eid, formEdData);
+  const response = await RootApi.put(`/student/${eid}`, formEdData);
+  console.log("response-edit=>", response);
 
   return response.data;
 });

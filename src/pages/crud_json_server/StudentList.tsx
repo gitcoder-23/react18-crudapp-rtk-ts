@@ -35,6 +35,13 @@ const StudentList: React.FC = () => {
     dispatch(getAllStudents());
   };
 
+  const editClick = (edData: StudentModel) => {
+    // console.log("edData=>", edData);
+    navigate(`/studentedit/${edData.id}`, {
+      state: { studentDatas: edData },
+    });
+  };
+
   return (
     <div className="container mt-4">
       <button
@@ -57,6 +64,7 @@ const StudentList: React.FC = () => {
           allStudents={allStudents}
           viewBtnClick={viewBtnClick}
           delClick={delClick}
+          editClick={editClick}
         />
       )}
     </div>
