@@ -5,6 +5,7 @@ import { Route, Routes } from "react-router-dom";
 import StudentDetails from "./pages/crud_json_server/StudentDetails";
 import StudentAdd from "./pages/crud_json_server/components/StudentAdd";
 import ToastMessage from "./components/ToastMessage";
+import StudentNewAdd from "./pages/crud_json_server/StudentNewAdd";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<StudentList />} />
         <Route path="/studentadd" element={<StudentAdd />} />
+        <Route path="/studentnewadd" element={<StudentNewAdd />} />
         <Route path="/studentdetails/:vid" element={<StudentDetails />} />
       </Routes>
     </div>

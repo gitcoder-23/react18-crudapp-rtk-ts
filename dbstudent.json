@@ -55,6 +55,13 @@
       "phone": "7894587485",
       "active": true,
       "id": 1701512765355
+    },
+    {
+      "studentname": "Hina Khan",
+      "email": "hina@yahoo.com",
+      "phone": "7894561258",
+      "active": true,
+      "id": 1701518415616
     }
   ]
 }

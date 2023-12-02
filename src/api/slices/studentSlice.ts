@@ -5,6 +5,7 @@ import {
   deleteOneStudent,
   getAllStudents,
   getSingleStudent,
+  newPostStudent,
 } from "../actions/studentAction";
 
 export interface initialStateInterface {
@@ -87,6 +88,26 @@ const studentSlice = createSlice({
     builder.addCase(addNewStudent.rejected, (state) => {
       state.isLoading = false;
       state.singleStudent = {} as StudentModel;
+      state.message = "Something went wrong";
+    });
+
+    // Add New Student
+    builder.addCase(newPostStudent.pending, (state) => {
+      state.isLoading = true;
+      state.message = "New Student data is now loading";
+    });
+
+    builder.addCase(
+      newPostStudent.fulfilled,
+      (state, actions: PayloadAction<StudentModel>) => {
+        state.isLoading = false;
+        state.allStudents = [...state.allStudents, actions.payload];
+        state.message = "New Student data added";
+      }
+    );
+
+    builder.addCase(newPostStudent.rejected, (state) => {
+      state.isLoading = false;
       state.message = "Something went wrong";
     });
 

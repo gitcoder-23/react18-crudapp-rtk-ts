@@ -43,6 +43,13 @@ const StudentList: React.FC = () => {
       >
         Add
       </button>
+      &nbsp;
+      <button
+        className="btn btn-success"
+        onClick={() => navigate(`/studentnewadd`)}
+      >
+        New Add
+      </button>
       {allStudents.length === 0 ? (
         <h3>No data found!</h3>
       ) : (

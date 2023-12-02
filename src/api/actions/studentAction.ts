@@ -12,6 +12,10 @@ type studentActionAddType = {
   formData: StudentModel;
 };
 
+type newStudentAddType = {
+  formData: StudentModel;
+};
+
 export const getAllStudents = createAsyncThunk<[StudentModel]>(
   "student/get",
   async () => {
@@ -41,10 +45,22 @@ export const addNewStudent = createAsyncThunk<
   studentActionAddType,
   {}
 >("student/add", async ({ formData }) => {
-  console.log("formData-action=>", formData);
+  // console.log("formData-action=>", formData);
 
   const response = await RootApi.post(`/student`, formData);
-  console.log("addNewStudent-action=>", response);
+  // console.log("addNewStudent-action=>", response);
+
+  return response.data;
+});
+
+export const newPostStudent = createAsyncThunk<
+  StudentModel,
+  newStudentAddType,
+  {}
+>("student/new/add", async ({ formData }) => {
+  console.log("formData-action=>", formData);
+  const response = await RootApi.post(`/student`, formData);
+  console.log("response-add=>", response);
 
   return response.data;
 });
